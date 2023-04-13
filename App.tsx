@@ -1,8 +1,14 @@
+import { Header } from './components/Header';
 import {Home} from './src/Home'
-import {Text, View } from 'react-native';
+import {StatusBar, Text, View } from 'react-native';
+
 
 export default function App() {
   return (
-    <Home />
+    <>
+      <StatusBar barStyle='light-content' backgroundColor='transparent' translucent/>
+    
+      <Home />
+    </>
   )
   }
