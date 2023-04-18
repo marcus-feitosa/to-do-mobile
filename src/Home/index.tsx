@@ -16,6 +16,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 export function Home() {
   const [tasks, setTasks] = useState<string[]>([]);
   const [taskInput, setTaskInput] = useState('');
+  const [isChecked, setIsChecked] = useState(false);
 
   function handleTaskAdd() {
     if (tasks.includes(taskInput)) {
@@ -37,6 +38,9 @@ export function Home() {
         style: 'cancel'
       }
     ])
+  }
+  function handleCheck(user: string) {
+    setIsChecked(!isChecked);
   }
 
   return (
@@ -62,10 +66,14 @@ export function Home() {
 
       <View style={styles.countdown}>
         <View style={styles.createdCountdown}>
-          <Text style={styles.createdCountdownText}>Críadas <Text style={styles.countdownNumber}>0</Text></Text>
+          <Text style={styles.createdCountdownText}>
+            Críadas <Text style={styles.countdownNumber}>0</Text>
+            </Text>
         </View>
         <View style={styles.concludedCountdown}>
-          <Text style={styles.concludedCountdownText}>Concluídas <Text style={styles.countdownNumber}>0</Text></Text>
+          <Text style={styles.concludedCountdownText}>
+            Concluídas <Text style={styles.countdownNumber}>0</Text>
+            </Text>
         </View>
       </View>
 
@@ -73,7 +81,7 @@ export function Home() {
         data={tasks}
         keyExtractor={item => item}
         renderItem={({ item }) => (
-          <Task key={item} name={item} onRemove={() => handleTaskRemove(item)} />
+          <Task key={item} content={item} onRemove={() => handleTaskRemove(item)} onCheck={()=>handleCheck(item)}/>
         )}
         showsVerticalScrollIndicator={false}
         ListEmptyComponent={() => (
