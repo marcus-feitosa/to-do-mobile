@@ -81,7 +81,7 @@ export function Home() {
         data={tasks}
         keyExtractor={item => item}
         renderItem={({ item }) => (
-          <Task key={item} content={item} onRemove={() => handleTaskRemove(item)} onCheck={()=>handleCheck(item)}/>
+          <Task key={item} content={item} onRemove={() => handleTaskRemove(item)} onCheck={()=>handleCheck(item)} isChecked={isChecked}/>
         )}
         showsVerticalScrollIndicator={false}
         ListEmptyComponent={() => (
