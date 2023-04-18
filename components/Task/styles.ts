@@ -9,7 +9,8 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         marginTop: 24,
-        marginBottom: 12
+        marginBottom: 12,
+        padding:8
 
     },
     name:{

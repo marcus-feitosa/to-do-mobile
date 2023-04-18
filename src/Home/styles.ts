@@ -69,9 +69,11 @@ export const styles = StyleSheet.create({
     countdown:{
       flexDirection: 'row',
       justifyContent: 'space-between',
+
+      
     },
     createdCountdown:{
-
+      alignItems: 'center'
     },
     createdCountdownText:{
       color:'#4EA8DE'
@@ -82,12 +84,14 @@ export const styles = StyleSheet.create({
     concludedCountdownText:{
       color:'#8284FA',
     },
-    countdownNumber:{
-      padding: 10,
-      backgroundColor:'#808080',
-      color:'#FFF',
+    countdownNumberContainer:{
+      padding:16,
+      borderRadius:40,
 
-      borderRadius: 16
+      backgroundColor: '#808080'
+    },
+    countdownNumber:{
+      color:'#FFF',
     },
     listEmptyTextBold:{
       marginTop: 8,

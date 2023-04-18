@@ -8,19 +8,20 @@ import {Checkbox} from 'expo-checkbox';
 
 
 interface TaskProps{
-    name:string
+    content:string
+    onCheck: () => void
     onRemove: () => void
     
 }
 
-export function Task({name, onRemove}:TaskProps){
+export function Task({content, onRemove,onCheck}:TaskProps){
     return(
         <>
         <View style={styles.container}>
-            <Checkbox
-        
+            <Checkbox onValueChange={onCheck}
+
             />
-            <Text style={styles.name}>{name}</Text>
+            <Text style={styles.name}>{content}</Text>
             <TouchableOpacity style={styles.button} onPress={onRemove}>
                 <EvilIcons name="trash" size={36} color="gray" />
             </TouchableOpacity>
