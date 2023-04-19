@@ -12,26 +12,42 @@ import { FontAwesome5 } from '@expo/vector-icons';
 
 
 
+export interface Tasks {
+  id: string;
+  isChecked: boolean;
+  content: string;
+}
+
 
 export function Home() {
-  const [tasks, setTasks] = useState<string[]>([]);
+
+  const [tasks, setTasks] = useState<Tasks[]>([]);
   const [taskInput, setTaskInput] = useState('');
-  const [isChecked, setIsChecked] = useState(false);
+  const [done, setDone] = useState(false)
 
-  function handleTaskAdd() {
-    if (tasks.includes(taskInput)) {
-      return Alert.alert('Task já cadastrada', 'Já existe uma task cadastrada com esse nome')
-    }
 
-    setTasks(old => [...old, taskInput]);
-    setTaskInput('');
+  function handleTaskAdd(){
+    setTasks([
+      {
+        id: taskInput,
+        isChecked: false,
+        content: taskInput,
+      },
+      ...tasks
+    ])
+
+    setTaskInput('')
   }
+  function handleTaskRemove(taskToDelete: Tasks) {
 
-  function handleTaskRemove(user: string) {
-    return Alert.alert('Remover', `Remover o participante ${user}?`, [
+    const taskWhithoutDeletedOne = tasks.filter(task => {
+      return task.id !== taskToDelete.id
+    })
+
+    return Alert.alert('Remover', `Remover o participante ${taskToDelete.content}?`, [
       {
         text: 'Sim',
-        onPress: () => setTasks(prevState => prevState.filter(participant => participant !== user))
+        onPress: () => setTasks(taskWhithoutDeletedOne)
       },
       {
         text: 'Não',
@@ -39,9 +55,24 @@ export function Home() {
       }
     ])
   }
-  function handleCheck(user: string) {
-    setIsChecked(!isChecked);
+
+  function handleCheck(taskToDone: Tasks) {
+    const updatedTasks = tasks.map(task => {
+      if (task.id === taskToDone.id) {
+        return {
+          ...task,
+          isChecked: !task.isChecked,
+        };
+      }
+      return task;
+    });
+    setTasks(updatedTasks);
   }
+  
+    const totalTasks = tasks.length
+    const totalTasksDone = tasks.filter(
+        task => task.isChecked === true
+    ).length
 
   return (
     <>
@@ -67,21 +98,21 @@ export function Home() {
       <View style={styles.countdown}>
         <View style={styles.createdCountdown}>
           <Text style={styles.createdCountdownText}>
-            Críadas <Text style={styles.countdownNumber}>0</Text>
+            Críadas <Text style={styles.countdownNumber}>{totalTasks}</Text>
             </Text>
         </View>
         <View style={styles.concludedCountdown}>
           <Text style={styles.concludedCountdownText}>
-            Concluídas <Text style={styles.countdownNumber}>0</Text>
+            Concluídas <Text style={styles.countdownNumber}>{totalTasksDone}</Text>
             </Text>
         </View>
       </View>
 
       <FlatList
         data={tasks}
-        keyExtractor={item => item}
+        
         renderItem={({ item }) => (
-          <Task key={item} content={item} onRemove={() => handleTaskRemove(item)} onCheck={()=>handleCheck(item)} isChecked={isChecked}/>
+          <Task key={item.id}  taskProps={item} onRemove={() => handleTaskRemove(item)} onCheck={()=>handleCheck(item)}/>
         )}
         showsVerticalScrollIndicator={false}
         ListEmptyComponent={() => (
