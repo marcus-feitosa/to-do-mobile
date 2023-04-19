@@ -1,20 +1,62 @@
-A estrutura da aplicação é composta por dois componentes principais:
+**DOCUMENTAÇÃO GERADA POR IA**
 
-    O componente Home, que é responsável pela renderização da tela e gerencia o estado geral da aplicação.
-    O componente Task, que é responsável pela renderização de cada tarefa individual na lista.
 
-O estado da aplicação é gerenciado pelo useState hook do React. O estado é composto por:
+To-Do List
 
-    tasks: uma matriz de objetos que representam as tarefas a serem realizadas. Cada objeto tem três propriedades: id (um identificador único para cada tarefa), isChecked (uma booleana que indica se a tarefa foi concluída ou não) e content (uma string que representa a descrição da tarefa).
-    taskInput: uma string que representa o valor do campo de entrada onde o usuário pode adicionar novas tarefas.
-    done: uma booleana que indica se a tarefa foi concluída ou não.
+Este é um aplicativo de To-Do List desenvolvido em React Native com TypeScript.
+Funcionalidades
 
-A função handleTaskAdd é executada quando o usuário clica no botão de adicionar tarefa. Ela adiciona uma nova tarefa à matriz de tarefas usando o setTasks hook e limpa o campo de entrada taskInput.
+    Adicionar tarefas
+    Remover tarefas
+    Marcar tarefas como concluídas
 
-A função handleTaskRemove é executada quando o usuário clica no botão de exclusão de uma tarefa. Ela remove a tarefa selecionada da matriz de tarefas usando o setTasks hook.
+Como executar o projeto
 
-A função handleCheck é executada quando o usuário clica no checkbox de uma tarefa. Ela atualiza a propriedade isChecked da tarefa selecionada na matriz de tarefas usando o setTasks hook.
+    Clone o repositório
+    Instale as dependências com o comando npm install
+    Execute o projeto com o comando expo start
 
-O componente Task é responsável por renderizar cada tarefa individual na lista. Ele recebe três props: taskProps, que é um objeto que representa a tarefa; onRemove, que é uma função que é executada quando o usuário clica no botão de exclusão de uma tarefa; e onCheck, que é uma função que é executada quando o usuário clica no checkbox de uma tarefa.
+Como utilizar
 
-O componente Task renderiza uma view que contém um checkbox, o conteúdo da tarefa e um botão de exclusão. Quando o usuário clica no checkbox, a função handleDoneTask é executada, atualizando a propriedade isChecked da tarefa selecionada na matriz de tarefas usando o onCheck prop. Quando o usuário clica no botão de exclusão, a função handleDeleteTask é executada, rem
+    Na tela inicial, adicione uma tarefa no campo de texto e clique no botão + para adicioná-la à lista.
+    Para marcar uma tarefa como concluída, clique no checkbox ao lado da tarefa.
+    Para remover uma tarefa, clique no ícone de lixeira ao lado da tarefa.
+
+Como funciona
+
+O aplicativo é composto por dois componentes principais: Home e Task.
+
+Home é responsável por renderizar a lista de tarefas e gerenciar as funções de adicionar e remover tarefas.
+
+Task é responsável por renderizar cada tarefa individualmente e gerenciar a função de marcar tarefas como concluídas.
+
+Quando uma tarefa é adicionada, um novo objeto Tasks é criado com as seguintes propriedades:
+
+php
+
+{
+  id: string; // identificador único da tarefa
+  
+  isChecked: boolean; // indica se a tarefa foi concluída ou não
+  
+  content: string; // conteúdo da tarefa
+}
+
+Ao marcar uma tarefa como concluída, a função handleCheck é chamada na tela Home. Esta função mapeia todas as tarefas da lista e retorna uma nova lista com a tarefa atualizada. A tarefa atualizada contém a propriedade isChecked modificada para o valor oposto.
+
+Ao remover uma tarefa, a função handleTaskRemove é chamada na tela Home. Esta função filtra todas as tarefas da lista e retorna uma nova lista sem a tarefa que foi removida.
+Tecnologias utilizadas
+
+    React Native
+    TypeScript
+    Expo
+    FontAwesome5
+    Expo Checkbox
+
+Referências
+
+    Documentação do React Native
+    Documentação do TypeScript
+    Documentação do Expo
+    Documentação do FontAwesome5
+    Documentação do Expo Checkbox
